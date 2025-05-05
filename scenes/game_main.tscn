@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cminvavno84tb"]
+[gd_scene load_steps=3 format=3 uid="uid://cminvavno84tb"]
 
+[ext_resource type="Texture2D" uid="uid://26niyn7i2ujk" path="res://assets/bg.png" id="1_hx1lv"]
 [ext_resource type="PackedScene" uid="uid://nqj8remiajm7" path="res://scenes/bird.tscn" id="1_tjvxm"]
 
 [node name="GameMain" type="Node2D"]
 
-[node name="bird" parent="." instance=ExtResource("1_tjvxm")]
-position = Vector2(8, 5)
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_hx1lv")
+offset = Vector2(432, 384)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(8, 5)
-zoom = Vector2(3, 3)
+[node name="bird" parent="." instance=ExtResource("1_tjvxm")]
