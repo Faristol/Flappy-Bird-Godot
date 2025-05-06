@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi8v4"]
 size = Vector2(1741, 144)
 
-[node name="ground" type="Area2D"]
+[node name="ground" type="StaticBody2D"]
+collision_mask = 0
 script = ExtResource("1_mi8v4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

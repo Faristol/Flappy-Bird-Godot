@@ -4,12 +4,16 @@ extends CharacterBody2D
 const GRAVITY = 900.0
 const JUMP_FORCE = -400.0
 const START_POS = Vector2(100,400)
+var restart
 func _ready():
 	reset()
 	
 func reset():
+	_animated_sprite.stop()
+	restart = false
 	position = START_POS
 	set_rotation(0)
+	velocity = Vector2.ZERO
 	
 func _physics_process(delta: float) -> void:
 	velocity.y += GRAVITY * delta
@@ -26,5 +30,6 @@ func _physics_process(delta: float) -> void:
 		_animated_sprite.play("flying")
 		set_rotation(-0.5)
 	
-
-	move_and_slide()
+	move_and_slide()	
+	if is_on_floor():
+		reset()
