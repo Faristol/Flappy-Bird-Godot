@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cminvavno84tb"]
+[gd_scene load_steps=4 format=3 uid="uid://cminvavno84tb"]
 
+[ext_resource type="PackedScene" uid="uid://c7crtyob4a3ob" path="res://scenes/ground.tscn" id="1_5nfmu"]
 [ext_resource type="Texture2D" uid="uid://26niyn7i2ujk" path="res://assets/bg.png" id="1_hx1lv"]
 [ext_resource type="PackedScene" uid="uid://nqj8remiajm7" path="res://scenes/bird.tscn" id="1_tjvxm"]
 
 [node name="GameMain" type="Node2D"]
+
+[node name="ground" parent="." instance=ExtResource("1_5nfmu")]
+z_index = 1
+position = Vector2(0, -1)
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_hx1lv")
