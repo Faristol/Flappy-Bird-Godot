@@ -2,34 +2,31 @@ extends CharacterBody2D
 
 @onready var _animated_sprite = $AnimatedSprite2D
 const GRAVITY = 900.0
-const JUMP_FORCE = -400.0
+const MAX_VEL = 600
+const JUMP_FORCE = -500.0
 const START_POS = Vector2(100,400)
-var restart
+var start_flying :bool = false
 func _ready():
 	reset()
 	
 func reset():
-	_animated_sprite.stop()
-	restart = false
+	start_flying = false
 	position = START_POS
 	set_rotation(0)
-	velocity = Vector2.ZERO
 	
 func _physics_process(delta: float) -> void:
-	velocity.y += GRAVITY * delta
-	if Input.is_action_just_pressed("space_jump") or Input.is_action_just_pressed("mouse1_jump"):
-		velocity.y = JUMP_FORCE
-		
-		
-		
-	#quan "caiga" cesar la animacio
-	if velocity.y > 0:
-		_animated_sprite.stop()
-		set_rotation(0.5)
-	else:
-		_animated_sprite.play("flying")
-		set_rotation(-0.5)
-	
-	move_and_slide()	
-	if is_on_floor():
-		reset()
+	if start_flying:
+		velocity.y += GRAVITY * delta
+		#quan "caiga" cesar la animacio
+		if velocity.y > MAX_VEL:
+			velocity.y = MAX_VEL
+		if velocity.y > 0:
+			_animated_sprite.stop()
+			set_rotation(deg_to_rad(velocity.y*0.05))
+		else:
+			_animated_sprite.play("flying")
+			set_rotation(deg_to_rad(velocity.y*0.05))
+		move_and_slide()	
+
+func jump_bird():
+	velocity.y = JUMP_FORCE
