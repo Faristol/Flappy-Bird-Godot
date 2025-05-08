@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cminvavno84tb"]
+[gd_scene load_steps=6 format=3 uid="uid://cminvavno84tb"]
 
 [ext_resource type="PackedScene" uid="uid://c7crtyob4a3ob" path="res://scenes/ground.tscn" id="1_5nfmu"]
 [ext_resource type="Script" uid="uid://r2wou3epngur" path="res://scripts/game_main.gd" id="1_57ec7"]
 [ext_resource type="Texture2D" uid="uid://26niyn7i2ujk" path="res://assets/bg.png" id="1_hx1lv"]
 [ext_resource type="PackedScene" uid="uid://nqj8remiajm7" path="res://scenes/bird.tscn" id="1_tjvxm"]
+[ext_resource type="PackedScene" uid="uid://fg73scwfscl4" path="res://scenes/pipe.tscn" id="2_3qnxt"]
 
 [node name="GameMain" type="Node2D"]
 script = ExtResource("1_57ec7")
+pipe_scene = ExtResource("2_3qnxt")
 
 [node name="ground" parent="." instance=ExtResource("1_5nfmu")]
 z_index = 1
@@ -17,3 +19,8 @@ texture = ExtResource("1_hx1lv")
 offset = Vector2(432, 384)
 
 [node name="bird" parent="." instance=ExtResource("1_tjvxm")]
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
